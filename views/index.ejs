@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 1. Specifies the character encoding for the HTML document. UTF-8 is a standard encoding that supports most characters. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 2. Ensures the page is responsive and scales properly on different devices by setting the viewport width and initial zoom level. -->
+    <title>Document</title> <!-- 3. Sets the title of the document, which appears in the browser tab. -->
+    
+    <!-- Import Tailwind CSS library for styling -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- 4. Includes the Tailwind CSS library from a CDN for utility-first CSS styling. -->
+    
+    <style>
+        .chessboard { /* 5. Defines the style for the chessboard container. */
+            display: grid; /* 6. Uses CSS Grid Layout to create a grid-based layout. */
+            grid-template-columns: repeat(8, minmax(0, 1fr)); /* 7. Defines 8 equal-width columns for the grid, ensuring each column is responsive. */
+            grid-template-rows: repeat(8, minmax(0, 1fr)); /* 8. Defines 8 equal-height rows for the grid, ensuring each row is responsive. */
+            width: 400px; /* 9. Sets a fixed width for the chessboard. */
+            height: 400px; /* 10. Sets a fixed height for the chessboard. */
+            transform: rotate(0deg); /* 11. Applies a rotation transformation (none in this case). */
+        }
+    
+        .piece.white { /* 12. Defines the style for white chess pieces. */
+            color: white; /* 13. Sets the text color of white pieces to white. */
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1)); /* 14. Applies a drop shadow effect to white pieces for better visibility. */
+        }
+    
+        .piece.black { /* 15. Defines the style for black chess pieces. */
+            color: black; /* 16. Sets the text color of black pieces to black. */
+        }
+    
+        .flipped { /* 17. Defines the style for flipping the board (for the black player). */
+            transform: rotate(180deg); /* 18. Rotates the chessboard 180 degrees to flip it. */
+        }
+    
+        .square { /* 19. Defines the style for individual squares on the chessboard. */
+            display: flex; /* 20. Uses Flexbox for layout within each square. */
+            align-items: center; /* 21. Centers content vertically within each square. */
+            justify-content: center; /* 22. Centers content horizontally within each square. */
+        }
+    
+        .square.light { /* 23. Defines the style for light-colored squares. */
+            background-color: #f0d9b5; /* 24. Sets a light brown color for light squares. */
+        }
+    
+        .square.dark { /* 25. Defines the style for dark-colored squares. */
+            background-color: #b58863; /* 26. Sets a dark brown color for dark squares. */
+        }
+    
+        .piece { /* 27. Defines the style for chess pieces. */
+            font-size: 36px; /* 28. Sets the font size for chess pieces. */
+            cursor: pointer; /* 29. Sets the cursor to a pointer when hovering over pieces. */
+        }
+    
+        .piece.draggable { /* 30. Defines the style for draggable chess pieces. */
+            cursor: grab; /* 31. Changes the cursor to a grab hand when a piece is draggable. */
+        }
+    
+        .dragging { /* 32. Defines the style for a piece while it's being dragged. */
+            opacity: 0.5; /* 33. Makes the dragged piece semi-transparent. */
+        }
+    
+        /* Rotate pieces for black player */
+        .flipped .piece { /* 34. Applies additional styling for pieces when the board is flipped for the black player. */
+            transform: rotate(180deg); /* 35. Rotates pieces 180 degrees for the black player to match the flipped board. */
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full h-screen flex flex-col items-center justify-center bg-zinc-800"> <!-- 36. Container for centering the chessboard in the viewport. -->
+        <div class="chessboard w-96 h-96"></div> <!-- 37. Chessboard container with Tailwind CSS classes for size and layout. -->
+    </div>
+
+    <!-- Import external JavaScript libraries -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script> <!-- 38. Includes the Socket.IO library for real-time communication. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- 39. Includes the chess.js library for chess game logic. -->
+    <script src="/js/chessGame.js"></script> <!-- 40. Includes the custom JavaScript file for handling chess game interactions. -->
+</body>
+</html>
